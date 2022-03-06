@@ -2,25 +2,26 @@ import { Button, MenuItem, TextField } from '@material-ui/core';
 import './Home.css';
 import Categories, {} from '../../data/Categories'
 import { useState } from 'react';
-import  { useNavigate } from 'react-router-dom'
+import {useNavigate} from "react-router-dom"
 import ErrorMessage from '../../component/error/ErrorMessage';
 const Home = ({name, setName, fetchQuestions}) => {
 
-    const navigate = useNavigate () 
+     
     const [category, setCategory] = useState("");
     const [difficulty, setDifficulty] = useState("");
     const [error, setError] = useState(false);
     
-    
+    const navigate = useNavigate();
         
    const handleSubmit = () => {
        if(!category || !difficulty|| !name) {
            setError(true)
            return;
-       } else{
+       } else {
+           
            setError(false);
-           fetchQuestions(category,difficulty)
-           navigate("/quiz")
+           //fetchQuestions(category,difficulty);
+           navigate("/Quiz");
            
             
            
@@ -75,21 +76,13 @@ const Home = ({name, setName, fetchQuestions}) => {
 
 
                   <Button
-                   variant='contained' 
-                   color='secondary' size='medium'
+                   variant='text' 
+                   color='secondary' size='small'
                    onClick={handleSubmit}>
                       start Quiz
                   </Button>
 
-                  {/* <Button
-                  style={{fontSize: 30}}
-                   variant='contained' 
-                   color='primary' size='medium'
-                   
-                   onClick={handleClick}>
-                      start Quiz
-                  </Button> */}
-
+                 
 
 
           </div>
