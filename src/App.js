@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import {  Routes, Route } from 'react-router-dom';
-import Header from './component/header/Header';
-import Footer from './footer/Footer';
-import Home from './pages/home/Home';
-import Quiz from './pages/quiz/Quiz';
-import Result from './pages/result/Result';
-import './App.css';
 import axios from "axios";
+import { useState } from "react";
+import { BrowserRouter, Route, Routes,} from "react-router-dom";
+import "./App.css";
+ import Footer from "./components/Footer/Footer";
+ import Header from "./components/Header/Header";
+import Home from "./Pages/Home/Home";
+import Quiz from "./Pages/Quiz/Quiz";
+import Result from "./Pages/Result/Result";
 
-const App = () => {
-  const [name, setName] = useState("");
-  const [question, setQuestions] = useState();
+function App() {
+  const [questions, setQuestions] = useState();
+  const [name, setName] = useState();
   const [score, setScore] = useState(0);
 
   const fetchQuestions = async (category = "", difficulty = "") => {
@@ -18,40 +18,28 @@ const App = () => {
       `https://opentdb.com/api.php?amount=10${
         category && `&category=${category}`
       }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
-      );
-      
-      console.log("e", data)
+    );
+
     setQuestions(data.results);
   };
-  
-  return(  
-   <React.Fragment>
-    <div className='app'>
-   <Header/>
-   <Routes>
-    <Route path='/' element ={<Home 
-    name = {name} 
-    setName={setName} />}
-    fetchQuestions={fetchQuestions} />
-    <Route path='/quiz' element={<Quiz 
-    name={name}
-    question={question}
-    score={score}
-    setScore={setScore}
-    setQuestions={setQuestions}
-    
-    
-    />} />
-    <Route path='/result' element={<Result />} />
-   </Routes>
-   <Footer/>
-   </div>
-  </React.Fragment>
-  
-   )
-  
-  
 
-};
+  return (
+   
+    <BrowserRouter>
+        <Header/>
+     
 
-export default App; 
+
+			<Routes>
+				<Route path='/' element={<Home name={name} setName={setName} fetchQuestions={fetchQuestions} />} />
+				<Route path='/quiz' element={<Quiz name={name} questions={questions} score={score} setScore={setScore} setQuestions={setQuestions} />} />
+				<Route path='/result' element={<Result name={name} score={score}  />} />
+				
+				{/* { <Route path='/profile/:id' element={<Profile />} /> } */}
+			</Routes>
+      <Footer/>
+		</BrowserRouter>
+  );
+}
+
+export default App;
