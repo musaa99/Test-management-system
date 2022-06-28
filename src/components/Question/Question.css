@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../../assets/bgdarkimg.png");
 }
 
 .singleQuestion {
@@ -16,7 +17,9 @@
   padding: 20px;
   margin-top: 10px;
 }
-
+h2{
+  color: white;
+}
 .options {
   width: 100%;
   display: flex;

@@ -1,7 +1,9 @@
 .title {
   text-transform: uppercase;
   font-size: 8vw;
+  background-color: black;
   font-family: "Montserrat", sans-serif;
+  color: antiquewhite;
   cursor: pointer;
 }
 
